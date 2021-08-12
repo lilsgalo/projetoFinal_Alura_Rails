@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lojinha</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= nav_bar brand: "Lojinha", responsive: true, brand_link: root_url do %>
+      <%= menu_group do %>
+        <%= menu_item "Adicionar Produto", new_produto_path %>
+        <%= menu_item "Departamentos", departamentos_path %>
+      <% end %>
+
+      <div class="form-group">
+        <%= form_tag search_produto_path, method: :get, class:"navbar-form navbar-right" do %>
+          <%= text_field_tag :nome, @nome, class:"form-control" %>
+          <%= button_to "Buscar", nil, class:"btn btn-default" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>
